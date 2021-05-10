@@ -8,9 +8,9 @@ const App = () => {
   const username = "Rupam Das"
 
   return (
-    <div className="App">
+    <div className="flex flex-col">
       <Header username={username} score={score}/>
-      <h1>📚Quizz App</h1>
+      <h1 className="text-xl font-medium text-black">📚Quizz App</h1>
       <QuestionCard/>
     </div>
   );
