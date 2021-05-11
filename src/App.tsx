@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Header, HeroSection, QuestionCard } from './Components';
+import { Header, HeroSection } from './Components';
 import {BrowserRouter as Router} from "react-router-dom"
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="container bg-blue-900 h-screen">
       <Router>
-        <Header username={username} score={0}/>
+        <Header username={username} score={score}/>
         <HeroSection/>
       </Router> 
     </div>

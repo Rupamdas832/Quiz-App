@@ -16,14 +16,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "On Earth",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "In space",
                             isCorrect: true
                         },
                         {
+                            id: 3,
                             value: "Under the sea",
                             isCorrect: false
                         },
@@ -35,14 +38,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Iron Man",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Vision",
                             isCorrect: false
                         },
                         {
+                            id: 3,
                             value: "Ultron",
                             isCorrect: true
                         },
@@ -54,14 +60,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Vibranium",
                             isCorrect: true
                         },
                         {
+                            id: 2,
                             value: "Frelunium",
                             isCorrect: false
                         },
                         {
+                            id: 3,
                             value: "Stretchium",
                             isCorrect: false
                         },
@@ -73,14 +82,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Android",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Ghost",
                             isCorrect: false
                         },
                         {
+                            id: 3,
                             value: "Alien",
                             isCorrect: true
                         },
@@ -92,14 +104,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Batman, Spider-man, Superman, Wonder Women",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Ant-man, Hulk, Iron Man, Wasp, Thor",
                             isCorrect: true
                         },
                         {
+                            id: 3,
                             value: "The Hulk, Black Widow, Howard the Duck, Thor",
                             isCorrect: false
                         },
@@ -111,14 +126,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Tony Stark",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Steve Rogers",
                             isCorrect: true
                         },
                         {
+                            id: 3,
                             value: "Buck Rogers",
                             isCorrect: false
                         },
@@ -131,38 +149,22 @@ const QuizData: QuizGame = {
             title: "Science Quizz",
             questions: [
                 {
-                    question: "Where does Rocket Raccoon spend most of his time?",
-                    points: 2,
-                    negativePoints: 1,
-                    options: [
-                        {
-                            value: "On Earth",
-                            isCorrect: false
-                        },
-                        {
-                            value: "In space",
-                            isCorrect: true
-                        },
-                        {
-                            value: "Under the sea",
-                            isCorrect: false
-                        },
-                    ]
-                },
-                {
                     question: "Whose nickname is Murder Bot?",
                     points: 2,
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Iron Man",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Vision",
                             isCorrect: false
                         },
                         {
+                            id: 3,
                             value: "Ultron",
                             isCorrect: true
                         },
@@ -174,14 +176,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Vibranium",
                             isCorrect: true
                         },
                         {
+                            id: 2,
                             value: "Frelunium",
                             isCorrect: false
                         },
                         {
+                            id: 3,
                             value: "Stretchium",
                             isCorrect: false
                         },
@@ -193,14 +198,17 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Android",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Ghost",
                             isCorrect: false
                         },
                         {
+                            id: 3,
                             value: "Alien",
                             isCorrect: true
                         },
@@ -212,34 +220,18 @@ const QuizData: QuizGame = {
                     negativePoints: 1,
                     options: [
                         {
+                            id: 1,
                             value: "Batman, Spider-man, Superman, Wonder Women",
                             isCorrect: false
                         },
                         {
+                            id: 2,
                             value: "Ant-man, Hulk, Iron Man, Wasp, Thor",
                             isCorrect: true
                         },
                         {
+                            id: 3,
                             value: "The Hulk, Black Widow, Howard the Duck, Thor",
-                            isCorrect: false
-                        },
-                    ]
-                },
-                {
-                    question: "In the 2012 movie, The Avengers features Captain America. What is his real name?",
-                    points: 2,
-                    negativePoints: 1,
-                    options: [
-                        {
-                            value: "Tony Stark",
-                            isCorrect: false
-                        },
-                        {
-                            value: "Steve Rogers",
-                            isCorrect: true
-                        },
-                        {
-                            value: "Buck Rogers",
                             isCorrect: false
                         },
                     ]

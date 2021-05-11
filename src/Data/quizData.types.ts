@@ -17,6 +17,7 @@ export type Question = {
     options: Option[];
 };
 export type Option = {
+    id: number;
     value: string;
     isCorrect: boolean;
 };
