@@ -1,13 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {AiFillPlayCircle} from "react-icons/ai"
+import {IoIosListBox} from "react-icons/io"
+import {IoSettingsSharp} from "react-icons/io5"
 
 export const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
-            <h1 className="text-xl font-medium text-black">📚Quizz App</h1>
-            <Link to="/categories">Categories</Link>
-            <Link to="/quiz">Play</Link>
+        <div className="flex flex-col justify-center items-center mt-36">
+            <div className="flex flex-col justify-center px-16 py-4 rounded-xl">
+                <h1 className="text-5xl font-medium text-purple-600">📚Quizz App</h1>
+                <div className="flex flex-col">
+                    <Link to="/quiz"><button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-white text-2xl rounded-xl hover:bg-purple-600"><AiFillPlayCircle/><span className="ml-3">Play</span></button></Link>
+                    <Link to="/categories"><button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-white text-2xl rounded-xl hover:bg-purple-600"><IoIosListBox/><span className="ml-3">Categories</span></button></Link>
+                    <Link to="/"><button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-white text-2xl rounded-xl hover:bg-purple-600"><IoSettingsSharp/><span className="ml-3">Categories</span></button></Link>
+                </div>
+                
+            </div>
         </div>
     )
 }

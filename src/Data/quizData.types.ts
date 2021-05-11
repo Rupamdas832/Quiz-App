@@ -1,4 +1,4 @@
-export type QuizData = {
+export type QuizGame = {
     totalScore: number;
     totalAccuracy: number;
     quizCompleted: number;

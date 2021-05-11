@@ -9,9 +9,9 @@ const App = () => {
   const username = "Rupam Das"
 
   return (
-    <div className="flex flex-col">
+    <div className="container bg-blue-900 h-screen">
       <Router>
-        <Header username={username} score={score}/>
+        <Header username={username} score={0}/>
         <HeroSection/>
       </Router> 
     </div>

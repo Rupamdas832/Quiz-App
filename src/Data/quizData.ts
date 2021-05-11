@@ -1,7 +1,7 @@
-import { QuizData } from "./quizData.types";
+import { QuizGame } from "./quizData.types";
 
 
-const QuizData: QuizData = {
+const QuizData: QuizGame = {
     totalScore: 0,
     totalAccuracy: 0,
     quizCompleted: 0,
@@ -248,3 +248,5 @@ const QuizData: QuizData = {
         }
     ]
 }
+
+export default QuizData

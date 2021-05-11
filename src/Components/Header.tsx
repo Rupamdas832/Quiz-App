@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type HeaderPropType = {
     username: string;
@@ -7,9 +8,9 @@ type HeaderPropType = {
 
 export const Header = ({username, score} : HeaderPropType) => {
     return (
-        <div>
-            <p>Welcome! {username}...</p>
-            <p>Score: {score}</p>
+        <div className="flex flex-row justify-around h-10 items-center bg-purple-600">
+            <Link to="/"><p className="text-white">Welcome! {username}...</p></Link>
+            <p className="text-white">Score: {score}</p>
         </div>
     )
 }
