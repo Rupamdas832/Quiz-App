@@ -3,12 +3,16 @@ import QuizData from '../Data/quizData'
 import { Option, Question } from '../Data/quizOne.types'
 import {FcOk, FcCancel} from "react-icons/fc"
 import "./TimerCircularBar.css"
+import { Navigate } from 'react-router-dom'
+import { Result } from '../Pages'
+
 
 
 export const QuestionCard = () => {
  
     const [isAnswered, setIsAnswered] = useState(false)
     const [timeCounter, setTimeCounter] = useState(0)
+    const [correctAnswers, setCorrectAnswers] = useState(0)
 
     type Action = 
     | {type: "INCREASE_SCORE", payload: number } 
@@ -55,14 +59,19 @@ export const QuestionCard = () => {
 
     const showOption = (option: Option) => {
             if(option.isCorrect){
-                return <button className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-green-500 text-md rounded-xl shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"><FcOk/><span className="ml-2">{option.value}</span></button>
+                return <button className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-green-500 text-white text-md rounded-xl shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"><FcOk/><span className="ml-2">{option.value}</span></button>
             }
-            else return <button className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-red-500 text-md rounded-xl shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"><FcCancel/><span className="ml-2">{option.value}</span></button>
+            else return <button className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-red-500 text-white text-md rounded-xl shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"><FcCancel/><span className="ml-2">{option.value}</span></button>
     }
 
     const checkAnswer = (currentQuestion: Question, option : Option) => {
         setIsAnswered(true)
-        return option.isCorrect ? storeDispatch({type: "INCREASE_SCORE", payload: currentQuestion.points}) : storeDispatch({type: "DECREASE_SCORE", payload: currentQuestion.negativePoints})
+        if(option.isCorrect){
+            setCorrectAnswers(correctAnswers => correctAnswers + 1)
+            return storeDispatch({type: "INCREASE_SCORE", payload: currentQuestion.points})
+        } else{
+            return storeDispatch({type: "DECREASE_SCORE", payload: currentQuestion.negativePoints})
+        } 
     }
     const nextBtn = () => {
         storeDispatch({type: "NEXT_QUESTION"})
@@ -92,7 +101,7 @@ export const QuestionCard = () => {
     
     const currentQuestion = quiz.questions[storeState.questionNumber - 1]
 
-    return (
+    return (storeState.questionNumber > 5 ? (<Result/>) : (
         <div className="flex flex-col items-center relative h-screen">
             <h1 className="text-center text-purple-500 text-3xl uppercase my-10">{quiz.title}</h1>
             <div className="flex flex-row justify-between items-center w-5/6 -m-3">
@@ -140,5 +149,5 @@ export const QuestionCard = () => {
                 <button onClick={() => nextBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Next</button>
             </div>
         </div>
-    )
+    ))
 }
