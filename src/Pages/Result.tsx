@@ -1,7 +1,12 @@
+import { Location } from 'history'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export const Result = () =>{
+
+    
+    const location = useLocation()
+    //const {path} = location.state
     
     const correctPercentage = () =>{
         return 90

@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { QuizProvider } from './Store/quizContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QuizProvider>
+      <App />
+    </QuizProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

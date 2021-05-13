@@ -5,6 +5,7 @@ import {FcOk, FcCancel} from "react-icons/fc"
 import "./TimerCircularBar.css"
 import { Navigate } from 'react-router-dom'
 import { Result } from '../Pages'
+import { useQuiz } from '../Store/quizContext'
 
 
 
@@ -14,48 +15,11 @@ export const QuestionCard = () => {
     const [timeCounter, setTimeCounter] = useState(0)
     const [correctAnswers, setCorrectAnswers] = useState(0)
 
-    type Action = 
-    | {type: "INCREASE_SCORE", payload: number } 
-    | {type: "DECREASE_SCORE", payload: number} 
-    | {type: "RESET"}
-    | {type: "NEXT_QUESTION"}
-    | {type: "PREVIOUS_QUESTION"}
+    const {quizState, quizDispatch} = useQuiz()
+    const {questionNumber, totalQuestions, score} = quizState;
 
-    type StatusState = "starting" | "progress" | "end"
-
-    type InitialState = {
-        score: number;
-        status: StatusState,
-        questionNumber: number,
-        totalQuestions: number
-    }
-
-    const StoreReducer = (state: typeof initialState, action: Action) => {
-        switch (action.type) {
-            case "RESET":
-                return {...state, score: 0, questionNumber: 1}
-            case "INCREASE_SCORE":
-                return {...state, score: state.score + action.payload}
-            case "DECREASE_SCORE":
-                return {...state, score: state.score - action.payload}
-            case "NEXT_QUESTION":
-                return {...state, questionNumber: state.totalQuestions === state.questionNumber ? (state.totalQuestions) : (state.questionNumber + 1)}
-            case "PREVIOUS_QUESTION":
-                return {...state, questionNumber: state.questionNumber <= 1 ? (1) : (state.questionNumber - 1)}
-            default:
-                return state;
-        }
-    }
+   
     const quiz = QuizData.quizzes[0]
-
-    const initialState: InitialState = {
-        score: 0,
-        status: "starting",
-        questionNumber: 1,
-        totalQuestions: quiz.questions.length
-    }
-
-    const [storeState, storeDispatch] = useReducer(StoreReducer,initialState)
 
     const showOption = (option: Option) => {
             if(option.isCorrect){
@@ -68,19 +32,19 @@ export const QuestionCard = () => {
         setIsAnswered(true)
         if(option.isCorrect){
             setCorrectAnswers(correctAnswers => correctAnswers + 1)
-            return storeDispatch({type: "INCREASE_SCORE", payload: currentQuestion.points})
+            return quizDispatch({type: "INCREASE_SCORE", payload: currentQuestion.points})
         } else{
-            return storeDispatch({type: "DECREASE_SCORE", payload: currentQuestion.negativePoints})
+            return quizDispatch({type: "DECREASE_SCORE", payload: currentQuestion.negativePoints})
         } 
     }
     const nextBtn = () => {
-        storeDispatch({type: "NEXT_QUESTION"})
+        quizDispatch({type: "NEXT_QUESTION"})
         setIsAnswered(false)
         setTimeCounter(0)
     }
     
     const resetBtn = () => {
-        storeDispatch({type: "RESET"})
+        quizDispatch({type: "RESET"})
         setIsAnswered(false)
         setTimeCounter(0)
     }
@@ -99,20 +63,20 @@ export const QuestionCard = () => {
         startTimer()
     },)
     
-    const currentQuestion = quiz.questions[storeState.questionNumber - 1]
+    const currentQuestion = quiz.questions[questionNumber - 1]
 
-    return (storeState.questionNumber > 5 ? (<Result/>) : (
+    return (questionNumber > 5 ? (<Navigate to="/result" state={{path: "hello"}}/>) : (
         <div className="flex flex-col items-center relative h-screen">
             <h1 className="text-center text-purple-500 text-3xl uppercase my-10">{quiz.title}</h1>
             <div className="flex flex-row justify-between items-center w-5/6 -m-3">
                 <div>
-                    <h1 className="text-3xl text-white">{storeState.questionNumber} / <span>{storeState.totalQuestions}</span></h1>
+                    <h1 className="text-3xl text-white">{questionNumber} / <span>{totalQuestions}</span></h1>
                     <p className="text-purple-600">Questions</p>
                 </div>
                 <div>
                     {timeCounter <= 5 ? (
                         <div className={`progress-circle p${timeCounter*10}`}>
-                        <span>{timeCounter}</span>
+                        <span>{10 - timeCounter}</span>
                         <div className="left-half-clipper">
                             <div className="first50-bar"></div>
                             <div className="value-bar"></div>
@@ -120,7 +84,7 @@ export const QuestionCard = () => {
                     </div>
                     ) : (
                     <div className={`progress-circle over50 p${timeCounter*10}`}>
-                    <span>{timeCounter}</span>
+                    <span>{10 -timeCounter}</span>
                     <div className="left-half-clipper">
                         <div className="first50-bar"></div>
                         <div className="value-bar"></div>
@@ -129,7 +93,7 @@ export const QuestionCard = () => {
                 }
                 </div>
                 <div>
-                    <h1 className="text-3xl text-white">{storeState.score}</h1>
+                    <h1 className="text-3xl text-white">{score}</h1>
                     <p className="text-purple-600">Points</p>
                 </div>
             </div>

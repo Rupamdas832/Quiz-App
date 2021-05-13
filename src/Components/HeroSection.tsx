@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
-import { Categories, Home, Result } from '../Pages'
+import { Categories, Home, LeaderBoard, Result } from '../Pages'
 import { QuestionCard } from './QuestionCard'
 
 export const HeroSection = () => {
@@ -10,6 +10,7 @@ export const HeroSection = () => {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/categories" element={<Categories/>}/>
                 <Route path="/quiz" element={<QuestionCard/>}/>
+                <Route path="/leader-board" element={<LeaderBoard/>}/>
                 <Route path="/result" element={<Result/>}/>
             </Routes>
         </div>

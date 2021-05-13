@@ -2,13 +2,12 @@ import { QuizGame } from "./quizData.types";
 
 
 const QuizData: QuizGame = {
-    totalScore: 0,
-    totalAccuracy: 0,
-    quizCompleted: 0,
     quizzes: [
         {
             quizId: 1,
             title: "Marvel Quizz",
+            highestScore: 450,
+            highScorerName: "Rupam",
             questions: [
                 {
                     question: "Where does Rocket Raccoon spend most of his time?",
@@ -147,6 +146,8 @@ const QuizData: QuizGame = {
         {
             quizId: 2,
             title: "Science Quizz",
+            highestScore: 450,
+            highScorerName: "Aman",
             questions: [
                 {
                     question: "Whose nickname is Murder Bot?",
