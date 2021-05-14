@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { QuizProvider } from './Store/quizContext';
+import { QuizProvider, StoreProvider, UserProvider } from './Store';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <QuizProvider>
-      <App />
-    </QuizProvider>
+    <UserProvider>
+      <StoreProvider>
+        <QuizProvider>
+          <App />
+        </QuizProvider>
+      </StoreProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

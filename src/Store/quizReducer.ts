@@ -12,6 +12,8 @@ const QuizReducer = (state: any, action: Action) => {
             return {...state, questionNumber: state.totalQuestions === state.questionNumber ? (state.totalQuestions) : (state.questionNumber + 1)}
         case "PREVIOUS_QUESTION":
             return {...state, questionNumber: state.questionNumber <= 1 ? (1) : (state.questionNumber - 1)}
+        case "CORRECT_ANSWER":
+            return {...state, correctAnswers: state.correctAnswers + 1}
         default:
             return state;
     }

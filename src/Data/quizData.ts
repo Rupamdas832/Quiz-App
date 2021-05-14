@@ -146,7 +146,7 @@ const QuizData: QuizGame = {
         {
             quizId: 2,
             title: "Science Quizz",
-            highestScore: 450,
+            highestScore: 215,
             highScorerName: "Aman",
             questions: [
                 {

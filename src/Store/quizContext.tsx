@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
+import QuizData from "../Data/quizData";
 import { Quiz } from "../Data/quizData.types";
 import QuizReducer from "./quizReducer";
 
@@ -8,12 +9,15 @@ export type IntialState = {
     quiz: Quiz | {}
 }
 
+const quiz = QuizData.quizzes[0]
+
 export const initialState: any = {
     score: 0,
     status: "startingFROMnew",
-    quiz: {},
+    quiz: quiz,
     questionNumber: 1,
-    totalQuestions: 6
+    totalQuestions: quiz.questions.length,
+    correctAnswers: 0
 }
 
 const QuizContext = createContext(initialState);

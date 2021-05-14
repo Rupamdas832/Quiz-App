@@ -26,7 +26,13 @@ export type User = {
     name: string;
     email:string;
     totalScore: number;
-    quizCompleted: number[]
+    totalAccuracy: number;
+    quizCompleted: QuizPlayed[]
+}
+
+export type QuizPlayed = {
+    quizId: number;
+    score: number;
 }
 
 export type Action = 
@@ -35,3 +41,10 @@ export type Action =
 | {type: "RESET"}
 | {type: "NEXT_QUESTION"}
 | {type: "PREVIOUS_QUESTION"}
+| {type: "CORRECT_ANSWER"}
+
+export type StoreAction = 
+| {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, name: string}}
+
+export type UserAction = 
+| {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number}}

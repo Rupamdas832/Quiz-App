@@ -1,11 +1,12 @@
 import { User } from "./quizData.types";
 
-const User: User = {
+const UserData: User = {
     _id: "abc",
     name: "Rupam",
     email: "rupam@gmail.com",
     totalScore: 234,
-    quizCompleted: [1]
+    totalAccuracy: 85,
+    quizCompleted: [{quizId: 1, score: 346}]
 }
 
-export default User;
+export default UserData;
