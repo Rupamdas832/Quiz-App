@@ -4,9 +4,9 @@ const UserData: User = {
     _id: "abc",
     name: "Rupam",
     email: "rupam@gmail.com",
-    totalScore: 234,
-    totalAccuracy: 85,
-    quizCompleted: [{quizId: 1, score: 346}]
+    totalScore: 0,
+    totalAccuracy: 0,
+    quizCompleted: []
 }
 
 export default UserData;

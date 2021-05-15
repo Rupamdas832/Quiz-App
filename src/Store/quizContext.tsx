@@ -15,9 +15,11 @@ export const initialState: any = {
     score: 0,
     status: "startingFROMnew",
     quiz: quiz,
+    quizId: quiz.quizId,
     questionNumber: 1,
     totalQuestions: quiz.questions.length,
-    correctAnswers: 0
+    correctAnswers: 0,
+    accuracy: 0
 }
 
 const QuizContext = createContext(initialState);

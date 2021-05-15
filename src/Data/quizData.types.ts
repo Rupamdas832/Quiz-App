@@ -42,9 +42,10 @@ export type Action =
 | {type: "NEXT_QUESTION"}
 | {type: "PREVIOUS_QUESTION"}
 | {type: "CORRECT_ANSWER"}
+| {type: "ACCURACY", payload: number}
 
 export type StoreAction = 
 | {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, name: string}}
 
 export type UserAction = 
-| {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number}}
+| {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, accuracy: number}}

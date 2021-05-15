@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Option, Question } from '../Data/quizOne.types'
 import {FcOk, FcCancel} from "react-icons/fc"
 import "./TimerCircularBar.css"
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useQuiz } from '../Store/quizContext'
 
 
@@ -40,10 +40,8 @@ export const QuestionCard = () => {
         setTimeCounter(0)
     }
     
-    const resetBtn = () => {
+    const quitBtn = () => {
         quizDispatch({type: "RESET"})
-        setIsAnswered(false)
-        setTimeCounter(0)
     }
 
     const startTimer = () => {
@@ -105,8 +103,7 @@ export const QuestionCard = () => {
                 })}
             </div>
             <div className="flex flex-row justify-between w-5/6 absolute bottom-16">
-                
-                <button onClick={() => resetBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Reset</button>
+                <Link to="/"><button onClick={() => quitBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Quit</button></Link>
                 <button onClick={() => nextBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Next</button>
             </div>
         </div>

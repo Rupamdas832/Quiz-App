@@ -8,7 +8,7 @@ export const LeaderBoard = () => {
     const {quizzes} = storeState
 
     const {userState} = useUser()
-    const {user} = userState
+    const {totalAccuracy, totalScore, quizCompleted} = userState
 
     return (
         <div className="flex flex-col h-screen items-center p-5">
@@ -16,15 +16,15 @@ export const LeaderBoard = () => {
                 <h1 className="text-3xl font-extrabold uppercase tracking-wider text-yellow-500 shadow-md">LeaderBoard</h1>
                 <div className="flex flex-row justify-between items-center w-full mt-5">
                     <div className="flex flex-col items-center">
-                        <h1 className="text-2xl">{user.totalScore}</h1>
+                        <h1 className="text-2xl">{totalScore}</h1>
                         <p className="text-purple-700 text-sm">Total Score</p>
                     </div>
                     <div  className="flex flex-col items-center">
-                        <h1 className="text-2xl">{user.quizCompleted.length}</h1>
+                        <h1 className="text-2xl">{quizCompleted.length}</h1>
                         <p className="text-purple-700 text-sm">Quiz Completed</p>
                     </div>
                     <div className="flex flex-col items-center">
-                    <h1 className="text-2xl">{user.totalAccuracy}%</h1>
+                    <h1 className="text-2xl">{totalAccuracy.toFixed(0)}%</h1>
                         <p className="text-purple-700 text-sm">Accuracy</p>
                     </div>
                 </div>

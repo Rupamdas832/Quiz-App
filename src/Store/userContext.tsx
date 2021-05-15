@@ -3,8 +3,12 @@ import UserData from "../Data/UserData";
 import UserReducer from "./userReducer";
 
 
+
 export const initialState: any = {
    user: UserData,
+   totalScore: UserData.totalScore,
+   totalAccuracy: UserData.totalAccuracy,
+   quizCompleted: UserData.quizCompleted,
    isLoggedIn: true
 }
 

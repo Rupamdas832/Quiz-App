@@ -8,13 +8,13 @@ import { QuizProvider, StoreProvider, UserProvider } from './Store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserProvider>
-      <StoreProvider>
-        <QuizProvider>
-          <App />
-        </QuizProvider>
-      </StoreProvider>
-    </UserProvider>
+      <UserProvider>
+        <StoreProvider>
+          <QuizProvider>
+            <App />
+          </QuizProvider>  
+        </StoreProvider>
+      </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
