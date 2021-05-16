@@ -46,6 +46,10 @@ export type Action =
 
 export type StoreAction = 
 | {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, name: string}}
+| {type: "IS_LOADING", payload: string}
 
 export type UserAction = 
 | {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, accuracy: number}}
+| {type: "USER_LOGIN"}
+| {type: "USER_LOGOUT"}
+| {type: "LOAD_USER", payload: User}

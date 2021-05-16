@@ -1,30 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import { Link} from 'react-router-dom'
-import { useQuiz, useUser } from '../Store'
+import URL from '../Components/ServerURL'
+import { useQuiz, useStore, useUser } from '../Store'
 
 export const Result = () =>{
-
-    const [currentAccuracy, setCurrentAccuracy] = useState(0)
 
     const {quizState, quizDispatch} = useQuiz()
     const {totalQuestions, score, correctAnswers, quizId} = quizState;
 
-    const {userDispatch} = useUser()
-    
+    const {userState,userDispatch} = useUser()
+    const {userId} = userState;
 
-    useEffect(() => {
+    const {storeDispatch} = useStore()
+
+    const calAccuracyPercentage = () => {
         const accuracy = (correctAnswers/totalQuestions)*100
-        setCurrentAccuracy(accuracy)
-    }, [])
+        return accuracy
+    }
 
-    const resetBtn = () => {
+    const resetBtn = async () => {
         const quizDone = {
             quizId: quizId,
             score: score,
-            accuracy: currentAccuracy
+            accuracy: calAccuracyPercentage()
         }
-        userDispatch({type: "QUIZ_COMPLETE", payload: quizDone})
-        return quizDispatch({type: "RESET"})
+        storeDispatch({type: "IS_LOADING", payload: "adding"})
+        try {
+            const response = await axios.post(`${URL}/user/${userId}`, {
+                "score": score,
+                "accuracy": calAccuracyPercentage(),
+                "quizId": quizId
+            })
+            if(response.status === 201){
+                userDispatch({type: "QUIZ_COMPLETE", payload: quizDone})
+                quizDispatch({type: "RESET"})
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        finally{
+            storeDispatch({type: "IS_LOADING", payload: "success"})
+        }
     }
 
     return (
@@ -34,7 +51,7 @@ export const Result = () =>{
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXcUZ8w5kl0XDGZ4ItBmXTWBPRX_JAb-HPeg&usqp=CAU" alt="trophy" className="w-full"/>
                 </div>
                 <h2>Congrats!</h2>
-                <h1 className="text-green-700 text-3xl font-bold my-3">{currentAccuracy.toFixed(0)}% Score</h1>
+                <h1 className="text-green-700 text-3xl font-bold my-3">{calAccuracyPercentage().toFixed(0)}% Score</h1>
                 <p className="font-bold">Quiz completed successfully.</p>
                 <p className="font-medium">You attempted <span className="text-purple-700">{totalQuestions}</span> questions and from that <span className="text-green-700">{correctAnswers}</span> is correct</p>
                 <div className="flex flex-row justify-evenly w-full my-5">

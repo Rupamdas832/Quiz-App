@@ -8,7 +8,7 @@ export const Home = () => {
     return (
         <div className="flex flex-col justify-center items-center mt-36">
             <div className="flex flex-col justify-center px-16 py-4 rounded-xl">
-                <h1 className="text-4xl md:text-6xl font-medium text-purple-500">📚Grad Quizzy</h1>
+                <h1 className="text-3xl md:text-6xl font-medium text-purple-500">📚Grad Quizzy</h1>
                 <div className="flex flex-col">
                     <Link to="/quiz"><button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-white text-2xl rounded-xl hover:bg-purple-600"><AiFillPlayCircle/><span className="ml-3">Play</span></button></Link>
                     <Link to="/categories"><button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-white text-2xl rounded-xl hover:bg-purple-600"><IoIosListBox/><span className="ml-3">Categories</span></button></Link>

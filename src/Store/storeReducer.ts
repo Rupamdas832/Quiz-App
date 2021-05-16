@@ -9,6 +9,8 @@ type Quiz = {
 
 const StoreReducer = (state: any, action: StoreAction) => {
     switch (action.type) {
+        case "IS_LOADING": 
+            return {...state, isLoading: action.payload}
         case "QUIZ_COMPLETE":
             return {...state, quizzes: state.quizzes.map((quiz: Quiz)  => {
                 if(quiz.quizId === action.payload.quizId){
