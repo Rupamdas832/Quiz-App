@@ -12,7 +12,7 @@ export const Result = () =>{
     const navigation = useNavigate()
 
     const {userState,userDispatch} = useUser()
-    const {userId} = userState;
+    const {_id} = userState;
 
     const {storeState,storeDispatch} = useStore()
     const {loadingMessage} = storeState
@@ -31,7 +31,7 @@ export const Result = () =>{
         }
         storeDispatch({type: "IS_LOADING", payload: "updating"})
         try {
-            const response = await axios.post(`${URL}/user/${userId}`, {
+            const response = await axios.post(`${URL}/user/${_id}`, {
                 "score": score,
                 "accuracy": calAccuracyPercentage(),
                 "quizId": quizId

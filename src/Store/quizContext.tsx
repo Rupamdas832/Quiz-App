@@ -1,12 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { Quiz } from "../Data/quizData.types";
 import QuizReducer from "./quizReducer";
-
-export type IntialState = {
-    score: number;
-    status: string;
-    quiz: Quiz | {}
-}
 
 export const initialState: any = {
     score: 0,

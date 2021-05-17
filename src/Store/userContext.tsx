@@ -11,13 +11,13 @@ import UserReducer from "./userReducer";
 
 
 export const initialState: any = {
-    userId: UserData._id,
-   name: UserData.name,
-   email: UserData.email,
-   totalScore: UserData.totalScore,
-   totalAccuracy: UserData.totalAccuracy,
-   quizCompleted: UserData.quizCompleted,
-   isLoggedIn: false
+    _id : UserData._id,
+    name: UserData.name,
+    email: UserData.email,
+    totalScore: UserData.totalScore,
+    totalAccuracy: UserData.totalAccuracy,
+    quizCompleted: UserData.quizCompleted,
+    isLoggedIn: false
 }
 
 const UserContext = createContext(initialState);

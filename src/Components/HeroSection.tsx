@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router'
 import { Categories, Home, LeaderBoard, Login, Result, Signup } from '../Pages'
 import {QuestionCard} from "../Components"
+import { PrivateRoute } from './PrivateRoute'
 
 
 export const HeroSection = () => {
@@ -10,9 +11,9 @@ export const HeroSection = () => {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/categories" element={<Categories/>}/>
-                <Route path="/quiz" element={<QuestionCard/>}/>
-                <Route path="/leader-board" element={<LeaderBoard/>}/>
-                <Route path="/result" element={<Result/>}/>
+                <PrivateRoute path="/quiz" element={<QuestionCard/>}/>
+                <PrivateRoute path="/leader-board" element={<LeaderBoard/>}/>
+                <PrivateRoute path="/result" element={<Result/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/signup" element={<Signup/>}/>
             </Routes>

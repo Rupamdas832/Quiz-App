@@ -1,9 +1,9 @@
 import QuizData from "../Data/quizData"
-import { Action } from "../Data/quizData.types"
+import { Action, QuizState } from "../Data/quizData.types"
 
 const quiz = QuizData.quizzes[0]
 
-const QuizReducer = (state: any, action: Action) => {
+const QuizReducer = (state: QuizState, action: Action) => {
     switch (action.type) {
         case "LOAD_QUIZ":
             return {...state, 

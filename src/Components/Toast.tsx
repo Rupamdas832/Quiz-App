@@ -5,7 +5,6 @@ type Prop = {
 }
 
 export const Toast = (title: Prop) =>{
-    console.log("FROM TOAST", title)
     return (
         <div className="flex flex-row items-center fixed z-10 top-12 right-3 p-2 md:text-lg bg-white border-b-4 border-green-600 rounded">
             <p><FcApproval/></p>

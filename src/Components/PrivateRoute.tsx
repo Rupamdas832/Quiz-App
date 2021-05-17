@@ -7,8 +7,9 @@ export const PrivateRoute = ({...props}) => {
 
     //const loginStatus = JSON.parse(localStorage.getItem("QuizLoginUser") || " ")
 
-    const isLoggedIn = true;
-    console.log(props)
+    const {userState} = useUser()
+    const {isLoggedIn} = userState
+    
     return (isLoggedIn ? (
         <Route {...props}/>
     ) : (

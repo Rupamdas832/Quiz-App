@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useStore, useUser } from '../Store'
 import axios from 'axios'
 import URL from '../Components/ServerURL'
+import { Toast } from '../Components'
 
 export const Signup = () =>{
     const [name, setName] = useState("")
@@ -15,7 +16,8 @@ export const Signup = () =>{
 
     const navigate = useNavigate()
 
-    const {storeDispatch} = useStore()
+    const {storeState,storeDispatch} = useStore();
+    const {loadingMessage} = storeState
 
     const {userDispatch} = useUser()
 
@@ -30,8 +32,7 @@ export const Signup = () =>{
             const user = response.data.user
             console.log(response)
             if(response.status === 201){
-                userDispatch({type: "USER_LOGIN"})
-                userDispatch({type: "LOAD_USER", payload: user})
+                userDispatch({type: "USER_LOAD", payload: user})
                 localStorage.setItem("QuizLoginUser", JSON.stringify({
                     isUserLogin: true,
                     userId: user._id,
@@ -53,6 +54,7 @@ export const Signup = () =>{
 
     return (
         <div className="flex flex-col items-center justify-center">
+            {loadingMessage === "signup" ? <Toast title="Checking Credentials"/> : null}
             <div className="flex flex-col items-center py-3 px-5 mt-12 bg-white rounded-2xl w-5/6 md:w-1/4">
             <div className="w-40 h-40">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMD8bSef8stSgnfECEHEDplxyVngLVp_eIuQ&usqp=CAU" alt="signup"/>

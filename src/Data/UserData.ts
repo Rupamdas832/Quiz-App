@@ -6,7 +6,8 @@ const UserData: User = {
     email: "rupam@gmail.com",
     totalScore: 0,
     totalAccuracy: 0,
-    quizCompleted: []
+    quizCompleted: [],
+    isLoggedIn: false
 }
 
 export default UserData;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Option, Question } from '../Data/quizOne.types'
 import {FcOk, FcCancel} from "react-icons/fc"
 import "./TimerCircularBar.css"
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useQuiz } from '../Store/quizContext'
 
 

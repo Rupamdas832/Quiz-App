@@ -28,7 +28,20 @@ export type User = {
     email:string;
     totalScore: number;
     totalAccuracy: number;
-    quizCompleted: QuizPlayed[]
+    quizCompleted: QuizPlayed[];
+    isLoggedIn: boolean;
+}
+
+export type QuizState = {
+    score: number;
+    status: string;
+    title: string;
+    questions: Question[];
+    quizId: number;
+    questionNumber: number;
+    totalQuestions: number;
+    correctAnswers: number;
+    accuracy: number;
 }
 
 export type QuizPlayed = {
@@ -52,6 +65,5 @@ export type StoreAction =
 
 export type UserAction = 
 | {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, accuracy: number}}
-| {type: "USER_LOGIN"}
 | {type: "USER_LOGOUT"}
-| {type: "LOAD_USER", payload: User}
+| {type: "USER_LOAD", payload: User}
