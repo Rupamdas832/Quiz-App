@@ -6,7 +6,8 @@ import StoreReducer from "./storeReducer";
 
 export const initialState: any = {
     quizData: QuizData,
-    quizzes: QuizData.quizzes
+    quizzes: QuizData.quizzes,
+    loadingMessage: null
 }
 
 const StoreContext = createContext(initialState);

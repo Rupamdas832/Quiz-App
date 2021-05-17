@@ -2,6 +2,12 @@ import React, { createContext, useContext, useReducer } from "react";
 import UserData from "../Data/UserData";
 import UserReducer from "./userReducer";
 
+/*type Storage = {
+    key: string;
+    value: any | null;
+}*/
+
+//const storageData = JSON.parse(localStorage.getItem("QuizLoginUser"));
 
 
 export const initialState: any = {

@@ -13,7 +13,7 @@ export const QuestionCard = () => {
     const [timeCounter, setTimeCounter] = useState(0)
 
     const {quizState, quizDispatch} = useQuiz()
-    const {questionNumber, totalQuestions, score, quiz} = quizState;
+    const {questionNumber, totalQuestions, score, questions, title} = quizState;
 
    
     
@@ -58,11 +58,11 @@ export const QuestionCard = () => {
         startTimer()
     },)
     
-    const currentQuestion = quiz.questions[questionNumber - 1]
+    const currentQuestion = questions[questionNumber - 1]
 
-    return (questionNumber > 5 ? (<Navigate to="/result"/>) : (
-        <div className="flex flex-col items-center relative h-screen">
-            <h1 className="text-center text-purple-500 text-3xl uppercase my-10">{quiz.title}</h1>
+    return (
+        <div className="flex flex-col items-center relative min-h-screen bg-blue-900">
+            <h1 className="text-center text-purple-500 text-3xl uppercase my-3">{title}</h1>
             <div className="flex flex-row justify-between items-center w-5/6 -m-3">
                 <div>
                     <h1 className="text-3xl text-white">{questionNumber} / <span>{totalQuestions}</span></h1>
@@ -104,8 +104,9 @@ export const QuestionCard = () => {
             </div>
             <div className="flex flex-row justify-between w-5/6 absolute bottom-16">
                 <Link to="/"><button onClick={() => quitBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Quit</button></Link>
-                <button onClick={() => nextBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Next</button>
+                {questionNumber === totalQuestions ? <Link to="/result"><button className="bg-green-600 px-2 py-1 rounded-md">Submit</button></Link> : <button onClick={() => nextBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Next</button>}
+                
             </div>
         </div>
-    ))
+    )
 }

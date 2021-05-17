@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
 import { Categories, Home, LeaderBoard, Login, Result, Signup } from '../Pages'
-import {QuestionCard, PrivateRoute} from "../Components"
+import {QuestionCard} from "../Components"
 
 
 export const HeroSection = () => {

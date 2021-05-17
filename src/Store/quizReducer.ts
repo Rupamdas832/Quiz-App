@@ -5,6 +5,18 @@ const quiz = QuizData.quizzes[0]
 
 const QuizReducer = (state: any, action: Action) => {
     switch (action.type) {
+        case "LOAD_QUIZ":
+            return {...state, 
+                score: 0,
+                status: "starting",
+                title: action.payload.title,
+                questions: action.payload.questions,
+                quizId: action.payload.quizId,
+                questionNumber: 1,
+                totalQuestions: action.payload.questions.length,
+                correctAnswers: 0,
+                accuracy: 0
+            }
         case "RESET":
             return {...state, 
                 score: 0,

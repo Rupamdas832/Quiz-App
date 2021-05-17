@@ -5,6 +5,7 @@ export type QuizGame = {
 export type Quiz = {
     quizId: number;
     title: string;
+    img: string;
     highestScore: number;
     highScorerName: string;
     questions: Question[];
@@ -36,6 +37,7 @@ export type QuizPlayed = {
 }
 
 export type Action = 
+| {type: "LOAD_QUIZ", payload: Quiz}
 | {type: "INCREASE_SCORE", payload: number } 
 | {type: "DECREASE_SCORE", payload: number} 
 | {type: "RESET"}
