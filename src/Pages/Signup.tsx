@@ -64,19 +64,19 @@ export const Signup = () =>{
                 <p className="text-sm">Please fill the input below here</p>
                 <div className="mt-5 w-full flex flex-row items-center">
                     <label><CgProfile/></label>
-                    <input placeholder="Enter Name" type="text" className="ml-3 w-full border-b-2 border-purple-600" onChange={e => setName(e.target.value)}/>
+                    <input placeholder="Enter Name" type="text" className="ml-3 w-full border-b-2 border-blue-700" onChange={e => setName(e.target.value)}/>
                 </div>
                 <div className="mt-5 w-full flex flex-row items-center">
                     <label><MdEmail/></label>
-                    <input placeholder="Enter Email" type="email" className="ml-3 w-full border-b-2 border-purple-600" onChange={e => setEmail(e.target.value)}/>
+                    <input placeholder="Enter Email" type="email" className="ml-3 w-full border-b-2 border-blue-700" onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div className="mt-3 w-full flex flex-row sitems-center">
                     <label><RiLockPasswordFill/></label>
-                    <input placeholder="Enter Password" type="password" className="ml-3 w-full border-b-2 border-purple-600" onChange={e => setPassword(e.target.value)}/>
+                    <input placeholder="Enter Password" type="password" className="ml-3 w-full border-b-2 border-blue-700" onChange={e => setPassword(e.target.value)}/>
                 </div> 
                 {error && <p className="bg-red-400 p-2 my-1 text-center text-sm rounded">{error}</p>} 
-                <button className="py-2 px-4 mt-10 text-white bg-purple-600 rounded-xl" type="submit" onClick={signUpUser}>Signup</button>  
-                <p className="my-3 text-sm">already have account.. click <span className="text-purple-600"><Link to="/login">here</Link></span></p>            
+                <button className="py-2 px-4 mt-5 text-white bg-blue-700 rounded-xl" type="submit" onClick={signUpUser}>Signup</button>  
+                <p className="my-3 text-sm">already have account.. click <span className="text-blue-700"><Link to="/login">here</Link></span></p>            
             </div>
             </div> 
         </div>

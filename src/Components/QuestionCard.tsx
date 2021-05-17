@@ -61,12 +61,12 @@ export const QuestionCard = () => {
     const currentQuestion = questions[questionNumber - 1]
 
     return (
-        <div className="flex flex-col items-center relative min-h-screen bg-blue-900">
-            <h1 className="text-center text-purple-500 text-3xl uppercase my-3">{title}</h1>
-            <div className="flex flex-row justify-between items-center w-5/6 -m-3">
+        <div className="flex flex-col items-center relative min-h-screen bg-blue-400">
+            <h1 className="text-center text-blue-700 text-3xl uppercase my-3">{title}</h1>
+            <div className="flex flex-row justify-between items-center w-5/6 -m-3 md:w-1/2">
                 <div>
-                    <h1 className="text-3xl text-white">{questionNumber} / <span>{totalQuestions}</span></h1>
-                    <p className="text-purple-600">Questions</p>
+                    <h1 className="text-3xl">{questionNumber} / <span>{totalQuestions}</span></h1>
+                    <p className="text-blue-700">Questions</p>
                 </div>
                 <div>
                     {timeCounter <= 5 ? (
@@ -88,23 +88,23 @@ export const QuestionCard = () => {
                 }
                 </div>
                 <div>
-                    <h1 className="text-3xl text-white">{score}</h1>
-                    <p className="text-purple-600">Points</p>
+                    <h1 className="text-3xl">{score}</h1>
+                    <p className="text-blue-700">Points</p>
                 </div>
             </div>
 
             
-            <p className="flex flex-row items-center justify-center mt-4 px-5 py-3 text-left text-white text-xl rounded-xl md:text-3xl">{currentQuestion.question}</p>
-            <div className="flex flex-col w-5/6 md:w-full md:items-center">
+            <p className="flex flex-row items-center justify-center mt-4 px-5 py-3 text-left text-xl rounded-xl md:text-3xl">{currentQuestion.question}</p>
+            <div className="flex flex-col w-5/6 md:w-full md:items-center md:w-1/2">
                 {currentQuestion.options.map((option: Option,idx: number) => {
                     return <div key={idx} className="flex flex-col w-full md:w-full md:items-center">
-                        {isAnswered ? showOption(option) : <button onClick={() => checkAnswer(currentQuestion, option)} disabled={isAnswered} className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-white text-md rounded-xl hover:bg-purple-600 shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3">{option.value}</button>}
+                        {isAnswered ? showOption(option) : <button onClick={() => checkAnswer(currentQuestion, option)} disabled={isAnswered} className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-white text-md rounded-xl hover:bg-blue-700 hover:text-white shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3">{option.value}</button>}
                     </div>
                 })}
             </div>
-            <div className="flex flex-row justify-between w-5/6 absolute bottom-16">
-                <Link to="/"><button onClick={() => quitBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Quit</button></Link>
-                {questionNumber === totalQuestions ? <Link to="/result"><button className="bg-green-600 px-2 py-1 rounded-md">Submit</button></Link> : <button onClick={() => nextBtn()} className="bg-purple-600 px-2 py-1 rounded-md">Next</button>}
+            <div className="flex flex-row justify-between w-5/6 absolute bottom-16 md:w-1/2">
+                <Link to="/"><button onClick={() => quitBtn()} className="bg-blue-700 text-white px-3 py-1 rounded-md">Quit</button></Link>
+                {questionNumber === totalQuestions ? <Link to="/result"><button className="bg-green-600 px-2 py-1 rounded-md">Submit</button></Link> : <button onClick={() => nextBtn()} className="bg-blue-700 text-white px-2 py-1 rounded-md">Next</button>}
                 
             </div>
         </div>

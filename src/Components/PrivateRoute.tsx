@@ -1,19 +1,18 @@
 import React from 'react'
 
 import { Route , Navigate} from "react-router-dom"
-import { useUser } from '../Store'
 
 export const PrivateRoute = ({...props}) => {
 
-    //const loginStatus = JSON.parse(localStorage.getItem("QuizLoginUser") || " ")
+    const storage = localStorage?.getItem("QuizLoginUser")
 
-    const {userState} = useUser()
-    const {isLoggedIn} = userState
-    
-    return (isLoggedIn ? (
-        <Route {...props}/>
-    ) : (
-        <Navigate to="/login"/>
-    ))
+    if(storage !== null){
+        const loginStatus = JSON.parse(storage)
+        if(loginStatus.isUserLogin === true){
+            return <Route {...props}/>
+        }
+        else return <Navigate to="/login"/>
+    }
+    else return <Navigate to="/login"/>
     
 }

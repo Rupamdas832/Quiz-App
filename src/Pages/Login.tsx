@@ -61,15 +61,15 @@ export const Login = () =>{
                 <p className="text-sm">Please login to continue</p>
                 <div className="mt-5 w-full flex flex-row items-center">
                     <label><MdEmail/></label>
-                    <input placeholder="Enter Email" type="email" className="ml-3 w-full border-b-2 border-purple-600" onChange={(e) => setEmail(e.target.value)}/>
+                    <input placeholder="Enter Email" type="email" className="ml-3 w-full border-b-2 border-blue-600" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="mt-3 w-full flex flex-row sitems-center">
                     <label><RiLockPasswordFill/></label>
-                    <input placeholder="Enter Password" type="password" className="ml-3 w-full border-b-2 border-purple-600" onChange={(e) => setPassword(e.target.value)}/>
+                    <input placeholder="Enter Password" type="password" className="ml-3 w-full border-b-2 border-blue-600" onChange={(e) => setPassword(e.target.value)}/>
                 </div>  
                 {error && <p className="bg-red-400 p-2 my-1 text-center text-sm rounded">{error}</p>}
-                <button className="py-2 px-4 mt-5 text-white bg-purple-600 rounded-xl" type="submit" onClick={loginWithCredentials}>Login</button>  
-                <p className="my-3 text-sm">new to quizz... create account <span className="text-purple-600"><Link to="/signup">here</Link></span></p>            
+                <button className="py-2 px-4 mt-5 text-white bg-blue-700 rounded-xl" type="submit" onClick={loginWithCredentials}>Login</button>  
+                <p className="my-3 text-sm">new to quizz... create account <span className="text-blue-600"><Link to="/signup">here</Link></span></p>            
             </div>
             </div> 
         </div>

@@ -15,7 +15,7 @@ export const Header = () => {
     }
 
     return (
-        <div className="flex flex-row justify-around h-10 items-center bg-purple-700">
+        <div className="flex flex-row justify-around h-10 items-center bg-blue-700">
             <Link to="/"><p className="text-white font-bold" onClick={() => quizDispatch({type: "RESET"})}>Quizzy</p></Link>
             {isLoggedIn && <p className="text-white text-lg font-medium">Score: {totalScore}</p>}
             {!isLoggedIn && <Link to="/login"><button className="text-white border-2 border-white px-1 rounded">Login</button></Link>}

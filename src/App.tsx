@@ -5,7 +5,7 @@ import {BrowserRouter as Router} from "react-router-dom"
 const App = () => {
 
   return (
-    <div className="container bg-blue-900 h-screen">
+    <div className="container bg-blue-400 h-screen">
       <Router>
         <Header/>
         <HeroSection/>

@@ -12,11 +12,10 @@ export const Result = () =>{
     const navigation = useNavigate()
 
     const {userState,userDispatch} = useUser()
-    const {_id} = userState;
+    const {_id, name, email, totalScore, totalAccuracy, quizCompleted} = userState;
 
     const {storeState,storeDispatch} = useStore()
     const {loadingMessage} = storeState
-    console.log("RESULT",loadingMessage)
 
     const calAccuracyPercentage = () => {
         const accuracy = (correctAnswers/totalQuestions)*100
@@ -37,6 +36,15 @@ export const Result = () =>{
                 "quizId": quizId
             })
             if(response.status === 201){
+                localStorage.setItem("QuizLoginUser", JSON.stringify({
+                    isUserLogin: true,
+                    userId: _id,
+                    userName: name,
+                    userEmail: email,
+                    userTotalScore: totalScore + score,
+                    userTotalAccuracy: (totalAccuracy === 0 ? calAccuracyPercentage() : (totalAccuracy + calAccuracyPercentage())/2),
+                    userQuizCompleted: quizCompleted.concat({quizId: quizId, score: score}),
+                }))
                 userDispatch({type: "QUIZ_COMPLETE", payload: quizDone})
                 quizDispatch({type: "RESET"})
                 navigation("/categories")
@@ -50,7 +58,7 @@ export const Result = () =>{
     }
 
     return (
-        <div className="flex flex-col h-screen items-center justify-center p-5 relative">
+        <div className="flex flex-col min-h-screen items-center justify-center bg-blue-400 p-5 relative">
             {loadingMessage === "updating" ? <Toast title="Updating Score"/> : null}
             <div className="flex flex-col bg-white p-5 text-center items-center rounded-xl">
                 <div className="h-40 w-40">
@@ -61,8 +69,8 @@ export const Result = () =>{
                 <p className="font-bold">Quiz completed successfully.</p>
                 <p className="font-medium">You attempted <span className="text-purple-700">{totalQuestions}</span> questions and from that <span className="text-green-700">{correctAnswers}</span> is correct</p>
                 <div className="flex flex-row justify-evenly w-full my-5">
-                    <button className="border-2 border-purple-700 px-2 py-1 rounded-md" onClick={resetBtn}>Main Menu</button>
-                    <button className="border-2 border-purple-600 px-2 py-1 rounded-md" onClick={resetBtn}>Play More</button>
+                    <button className="border-2 border-blue-700 px-2 py-1 rounded-md" onClick={resetBtn}>Main Menu</button>
+                    <button className="border-2 border-blue-700 px-2 py-1 rounded-md" onClick={resetBtn}>Play More</button>
                 </div>
             </div>
         </div>

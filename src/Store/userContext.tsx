@@ -1,24 +1,33 @@
 import React, { createContext, useContext, useReducer } from "react";
-import UserData from "../Data/UserData";
 import UserReducer from "./userReducer";
 
-/*type Storage = {
-    key: string;
-    value: any | null;
-}*/
-
-//const storageData = JSON.parse(localStorage.getItem("QuizLoginUser"));
+    const storage = localStorage?.getItem("QuizLoginUser")
 
 
-export const initialState: any = {
-    _id : UserData._id,
-    name: UserData.name,
-    email: UserData.email,
-    totalScore: UserData.totalScore,
-    totalAccuracy: UserData.totalAccuracy,
-    quizCompleted: UserData.quizCompleted,
-    isLoggedIn: false
-}
+    export let initialState: any = {}
+
+    if(storage !== null){
+        const userLogin = JSON.parse(storage)
+        initialState = {
+            _id : userLogin.userId,
+            name: userLogin.userName,
+            email: userLogin.userEmail,
+            totalScore: userLogin.userTotalScore,
+            totalAccuracy: userLogin.userTotalAccuracy,
+            quizCompleted: userLogin.userQuizCompleted,
+            isLoggedIn: true
+        }
+    }else {
+        initialState = {
+            _id : "",
+            name: "",
+            email: "",
+            totalScore: 0,
+            totalAccuracy: 0,
+            quizCompleted: [],
+            isLoggedIn: false
+        }
+    }
 
 const UserContext = createContext(initialState);
 

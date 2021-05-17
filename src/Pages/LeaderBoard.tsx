@@ -11,7 +11,7 @@ export const LeaderBoard = () => {
     const {totalAccuracy, totalScore, quizCompleted} = userState
 
     return (
-        <div className="flex flex-col h-screen items-center p-5">
+        <div className="flex flex-col min-h-screen bg-blue-400 items-center p-5">
             <div className="flex flex-col items-center w-full md:w-1/2 bg-white p-5 rounded-b-3xl shadow-xl">
                 <h1 className="text-3xl font-extrabold uppercase tracking-wider text-yellow-500 shadow-md">LeaderBoard</h1>
                 <div className="flex flex-row justify-between items-center w-full mt-5">
@@ -29,7 +29,7 @@ export const LeaderBoard = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-5 w-full flex flex-col items-center">
+            <div className="w-full flex flex-col mt-5 items-center">
                 <div className="grid grid-cols-3 mt-3 w-full text-center text-md py-3 text-md rounded md:w-1/2 md:text-xl md:my-3 md:p-3">
                     <p>Quiz Name</p>
                     <p>Highest Scorer</p>
@@ -37,7 +37,7 @@ export const LeaderBoard = () => {
                 </div>
                 {quizzes.map((quiz: Quiz) => {
                     const {quizId, title, highScorerName, highestScore} = quiz;
-                    return <div key={quizId} className="grid grid-cols-3 mt-3 w-full text-center py-3 bg-purple-700 text-white text-md rounded shadow-md md:w-1/2 md:text-xl md:my-3 md:p-3">
+                    return <div key={quizId} className="grid grid-cols-3 mt-3 w-full text-center py-3 bg-blue-600 text-white text-md rounded shadow-md md:w-1/2 md:text-xl md:my-3 md:p-3">
                     <p>{title}</p>
                     <p>{highScorerName}-{highestScore}</p>
                     <p>65</p>

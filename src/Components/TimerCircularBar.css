@@ -1,6 +1,6 @@
 *{
-    --purple-600: rgb(124,58,237);
-    --blue-900: rgb(30,58,138);
+    --purple-600: #1D4ED8;
+    --blue-900: #60A5FA;
 }
 .progress-circle {
     font-size: 20px;
