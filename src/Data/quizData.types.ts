@@ -1,71 +1,84 @@
 export type QuizGame = {
-    quizzes: Quiz[];
-}
+  quizzes: Quiz[];
+};
 
 export type Quiz = {
-    quizId: string;
-    quizNo: number;
-    title: string;
-    img: string;
-    highestScore: number;
-    highScorerName: string;
-    questions: Question[];
+  _id: string;
+  quizNo: number;
+  title: string;
+  img: string;
+  highestScore: number;
+  highScorerName: string;
+  questions: Question[];
 };
 export type Question = {
-    question: string;
-    points: number;
-    negativePoints: number;
-    options: Option[];
+  _id: string;
+  question: string;
+  points: number;
+  negativePoints: number;
+  options: Option[];
 };
 export type Option = {
-    id: number;
-    value: string;
-    isCorrect: boolean;
+  _id: string;
+  value: string;
+  isCorrect: boolean;
 };
 
 export type User = {
-    _id: string;
-    name: string;
-    email:string;
-    totalScore: number;
-    totalAccuracy: number;
-    quizCompleted: QuizPlayed[];
-    isLoggedIn: boolean;
-}
+  _id: string;
+  name: string;
+  email: string;
+  totalScore: number;
+  totalAccuracy: number;
+  quizCompleted: QuizPlayed[];
+  isLoggedIn: boolean;
+};
 
 export type QuizState = {
-    score: number;
-    status: string;
-    title: string;
-    questions: Question[];
-    quizId: string;
-    quizNo: number;
-    questionNumber: number;
-    totalQuestions: number;
-    correctAnswers: number;
-    accuracy: number;
-}
+  score: number;
+  status: string;
+  title: string;
+  questions: Question[];
+  _id: string;
+  quizNo: number;
+  questionNumber: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  accuracy: number;
+  highestScore: number;
+};
+export type StoreState = {
+  quizzes: Quiz[];
+  loadingMessage: string;
+};
 
 export type QuizPlayed = {
-    quizId: string;
-    score: number;
-}
+  _id: string;
+  score: number;
+};
 
-export type Action = 
-| {type: "LOAD_QUIZ", payload: Quiz}
-| {type: "INCREASE_SCORE", payload: number } 
-| {type: "DECREASE_SCORE", payload: number} 
-| {type: "RESET"}
-| {type: "NEXT_QUESTION"}
-| {type: "PREVIOUS_QUESTION"}
-| {type: "CORRECT_ANSWER"}
-| {type: "ACCURACY", payload: number}
+export type Action =
+  | { type: "LOAD_QUIZ"; payload: Quiz }
+  | { type: "INCREASE_SCORE"; payload: number }
+  | { type: "DECREASE_SCORE"; payload: number }
+  | { type: "RESET" }
+  | { type: "NEXT_QUESTION" }
+  | { type: "PREVIOUS_QUESTION" }
+  | { type: "CORRECT_ANSWER" }
+  | { type: "ACCURACY"; payload: number };
 
-export type StoreAction = 
-| {type: "QUIZ_COMPLETE", payload: {quizId: string, score: number, name: string}}
-| {type: "IS_LOADING", payload: string}
+export type StoreAction =
+  | {
+      type: "UPDATE_HIGH_SCORE";
+      payload: { _id: string; score: number; name: string };
+    }
+  | { type: "IS_LOADING"; payload: string }
+  | { type: "LOAD_QUIZZES"; payload: Quiz[] };
 
-export type UserAction = 
-| {type: "QUIZ_COMPLETE", payload: {quizId: string, score: number, accuracy: number}}
-| {type: "USER_LOGOUT"}
-| {type: "USER_LOAD", payload: User}
+export type UserAction =
+  | {
+      type: "QUIZ_COMPLETE";
+      payload: { _id: string; score: number; accuracy: number };
+    }
+  | { type: "USER_LOGOUT" }
+  | { type: "USER_LOAD"; payload: User };

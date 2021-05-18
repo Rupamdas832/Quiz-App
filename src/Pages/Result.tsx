@@ -1,78 +1,113 @@
-import axios from 'axios'
-import { useNavigate} from 'react-router-dom'
-import { Toast } from '../Components'
-import URL from '../Components/ServerURL'
-import { useQuiz, useStore, useUser } from '../Store'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Toast } from "../Components";
+import URL from "../Components/ServerURL";
+import { useQuiz, useStore, useUser } from "../Store";
 
-export const Result = () =>{
+export const Result = () => {
+  const { quizState, quizDispatch } = useQuiz();
+  const { totalQuestions, score, correctAnswers } = quizState;
 
-    const {quizState, quizDispatch} = useQuiz()
-    const {totalQuestions, score, correctAnswers, quizId} = quizState;
+  const navigation = useNavigate();
 
-    const navigation = useNavigate()
+  const { userState, userDispatch } = useUser();
+  const { _id, name, email, totalScore, totalAccuracy, quizCompleted } =
+    userState;
 
-    const {userState,userDispatch} = useUser()
-    const {_id, name, email, totalScore, totalAccuracy, quizCompleted} = userState;
+  const { storeState, storeDispatch } = useStore();
+  const { loadingMessage } = storeState;
 
-    const {storeState,storeDispatch} = useStore()
-    const {loadingMessage} = storeState
+  const calAccuracyPercentage = () => {
+    const accuracy = (correctAnswers / totalQuestions) * 100;
+    return accuracy;
+  };
 
-    const calAccuracyPercentage = () => {
-        const accuracy = (correctAnswers/totalQuestions)*100
-        return accuracy
+  const resetBtn = async () => {
+    const quizDone = {
+      _id: quizState._id,
+      score: score,
+      accuracy: calAccuracyPercentage(),
+    };
+    storeDispatch({ type: "IS_LOADING", payload: "updating" });
+    try {
+      const response = await axios.post(`${URL}/user/${_id}`, {
+        score: score,
+        accuracy: calAccuracyPercentage(),
+        _id: quizState._id,
+      });
+      if (response.status === 201) {
+        localStorage.setItem(
+          "QuizLoginUser",
+          JSON.stringify({
+            isUserLogin: true,
+            userId: _id,
+            userName: name,
+            userEmail: email,
+            userTotalScore: totalScore + score,
+            userTotalAccuracy:
+              totalAccuracy === 0
+                ? calAccuracyPercentage()
+                : (totalAccuracy + calAccuracyPercentage()) / 2,
+            userQuizCompleted: quizCompleted.concat({
+              _id: quizState._id,
+              score: score,
+            }),
+          })
+        );
+        userDispatch({ type: "QUIZ_COMPLETE", payload: quizDone });
+        quizDispatch({ type: "RESET" });
+        navigation("/categories");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      storeDispatch({ type: "IS_LOADING", payload: "success" });
     }
+  };
 
-    const resetBtn = async () => {
-        const quizDone = {
-            quizId: quizId,
-            score: score,
-            accuracy: calAccuracyPercentage()
-        }
-        storeDispatch({type: "IS_LOADING", payload: "updating"})
-        try {
-            const response = await axios.post(`${URL}/user/${_id}`, {
-                "score": score,
-                "accuracy": calAccuracyPercentage(),
-                "quizId": quizId
-            })
-            if(response.status === 201){
-                localStorage.setItem("QuizLoginUser", JSON.stringify({
-                    isUserLogin: true,
-                    userId: _id,
-                    userName: name,
-                    userEmail: email,
-                    userTotalScore: totalScore + score,
-                    userTotalAccuracy: (totalAccuracy === 0 ? calAccuracyPercentage() : (totalAccuracy + calAccuracyPercentage())/2),
-                    userQuizCompleted: quizCompleted.concat({quizId: quizId, score: score}),
-                }))
-                userDispatch({type: "QUIZ_COMPLETE", payload: quizDone})
-                quizDispatch({type: "RESET"})
-                navigation("/categories")
-            }
-        } catch (error) {
-            console.log(error)
-        }
-        finally{
-            storeDispatch({type: "IS_LOADING", payload: "success"})
-        }
-    }
-
-    return (
-        <div className="flex flex-col min-h-screen items-center justify-center bg-blue-400 p-5 relative">
-            {loadingMessage === "updating" ? <Toast title="Updating Score"/> : null}
-            <div className="flex flex-col bg-white p-5 text-center items-center rounded-xl">
-                <div className="h-40 w-40">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXcUZ8w5kl0XDGZ4ItBmXTWBPRX_JAb-HPeg&usqp=CAU" alt="trophy" className="w-full"/>
-                </div>
-                <h2>Congrats! <span className="text-green-700 text-xl">{calAccuracyPercentage().toFixed(0)}</span>% Accuracy</h2>
-                <h1 className="text-green-700 text-3xl font-bold my-3">{score} Score</h1>
-                <p className="font-bold">Quiz completed successfully.</p>
-                <p className="font-medium">You attempted <span className="text-purple-700">{totalQuestions}</span> questions and from that <span className="text-green-700">{correctAnswers}</span> is correct</p>
-                <div className="flex flex-row justify-evenly w-full my-5">
-                    <button className="border-2 border-blue-700 px-2 py-1 rounded-md" onClick={resetBtn}>Main Menu</button>
-                    <button className="border-2 border-blue-700 px-2 py-1 rounded-md" onClick={resetBtn}>Play More</button>
-                </div>
-            </div>
+  return (
+    <div className="flex flex-col min-h-screen items-center justify-center bg-blue-400 p-5 relative">
+      {loadingMessage === "updating" ? <Toast title="Updating Score" /> : null}
+      <div className="flex flex-col bg-white p-5 text-center items-center rounded-xl">
+        <div className="h-40 w-40">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXcUZ8w5kl0XDGZ4ItBmXTWBPRX_JAb-HPeg&usqp=CAU"
+            alt="trophy"
+            className="w-full"
+          />
         </div>
-    )
-}
+        <h2>
+          Congrats!{" "}
+          <span className="text-green-700 text-xl">
+            {calAccuracyPercentage().toFixed(0)}
+          </span>
+          % Accuracy
+        </h2>
+        <h1 className="text-green-700 text-3xl font-bold my-3">
+          {score} Score
+        </h1>
+        <p className="font-bold">Quiz completed successfully.</p>
+        <p className="font-medium">
+          You attempted{" "}
+          <span className="text-purple-700">{totalQuestions}</span> questions
+          and from that <span className="text-green-700">{correctAnswers}</span>{" "}
+          is correct
+        </p>
+        <div className="flex flex-row justify-evenly w-full my-5">
+          <button
+            className="border-2 border-blue-700 px-2 py-1 rounded-md"
+            onClick={resetBtn}
+          >
+            Main Menu
+          </button>
+          <button
+            className="border-2 border-blue-700 px-2 py-1 rounded-md"
+            onClick={resetBtn}
+          >
+            Play More
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
