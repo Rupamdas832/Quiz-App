@@ -2,11 +2,12 @@ import React, { createContext, useContext, useReducer } from "react";
 import QuizReducer from "./quizReducer";
 
 export const initialState: any = {
+    quizId: "",
     score: 0,
     status: "starting",
     title: "",
     questions: [],
-    quizId: 0,
+    quizNo: 0,
     questionNumber: 1,
     totalQuestions: 0,
     correctAnswers: 0,

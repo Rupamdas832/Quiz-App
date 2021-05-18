@@ -21,9 +21,9 @@ const QuizReducer = (state: QuizState, action: Action) => {
             return {...state, 
                 score: 0,
                 status: "starting",
-                quiz: quiz,
+                quiz: {},
                 questionNumber: 1,
-                totalQuestions: quiz.questions.length,
+                totalQuestions: 0,
                 correctAnswers: 0
             }
         case "INCREASE_SCORE":

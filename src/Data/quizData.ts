@@ -4,7 +4,8 @@ import { QuizGame } from "./quizData.types";
 const QuizData: QuizGame = {
     quizzes: [
         {
-            quizId: 1,
+            quizId: "abc",
+            quizNo: 1,
             title: "Marvel Quiz",
             img: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bWFydmVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
             highestScore: 450,
@@ -145,7 +146,8 @@ const QuizData: QuizGame = {
             ]
         },
         {
-            quizId: 2,
+            quizId: "abc1",
+            quizNo: 2,
             title: "Science Quiz",
             img: "https://images.unsplash.com/photo-1532634993-15f421e42ec0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2NpZW5jZSUyMGV4cGVyaW1lbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
             highestScore: 215,
@@ -242,7 +244,8 @@ const QuizData: QuizGame = {
             ]
         },
         {
-            quizId: 3,
+            quizId: "abc2",
+            quizNo: 3,
             title: "Star Wars Quiz",
             img: "https://images.unsplash.com/photo-1601814933824-fd0b574dd592?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RhciUyMHdhcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
             highestScore: 215,
@@ -361,7 +364,8 @@ const QuizData: QuizGame = {
             ]
         },
         {
-            quizId: 4,
+            quizId: "abc3",
+            quizNo: 4,
             title: "World Quiz",
             img: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHdvcmxkfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
             highestScore: 215,

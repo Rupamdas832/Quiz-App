@@ -3,7 +3,8 @@ export type QuizGame = {
 }
 
 export type Quiz = {
-    quizId: number;
+    quizId: string;
+    quizNo: number;
     title: string;
     img: string;
     highestScore: number;
@@ -37,7 +38,8 @@ export type QuizState = {
     status: string;
     title: string;
     questions: Question[];
-    quizId: number;
+    quizId: string;
+    quizNo: number;
     questionNumber: number;
     totalQuestions: number;
     correctAnswers: number;
@@ -45,7 +47,7 @@ export type QuizState = {
 }
 
 export type QuizPlayed = {
-    quizId: number;
+    quizId: string;
     score: number;
 }
 
@@ -60,10 +62,10 @@ export type Action =
 | {type: "ACCURACY", payload: number}
 
 export type StoreAction = 
-| {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, name: string}}
+| {type: "QUIZ_COMPLETE", payload: {quizId: string, score: number, name: string}}
 | {type: "IS_LOADING", payload: string}
 
 export type UserAction = 
-| {type: "QUIZ_COMPLETE", payload: {quizId: number, score: number, accuracy: number}}
+| {type: "QUIZ_COMPLETE", payload: {quizId: string, score: number, accuracy: number}}
 | {type: "USER_LOGOUT"}
 | {type: "USER_LOAD", payload: User}

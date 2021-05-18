@@ -1,11 +1,4 @@
-import { StoreAction, Question } from "../Data/quizData.types"
-type Quiz = {
-    quizId: number;
-    title: string;
-    highestScore: number;
-    highScorerName: string;
-    questions: Question[];
-};
+import { StoreAction, Question, Quiz } from "../Data/quizData.types"
 
 const StoreReducer = (state: any, action: StoreAction) => {
     switch (action.type) {
