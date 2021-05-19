@@ -13,6 +13,7 @@ export const initialState: any = {
   correctAnswers: 0,
   accuracy: 0,
   highestScore: 0,
+  questionsAttempted: [],
 };
 
 const QuizContext = createContext(initialState);

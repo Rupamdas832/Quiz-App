@@ -4,3 +4,4 @@ export { Result } from "./Result";
 export { LeaderBoard } from "./LeaderBoard";
 export { Login } from "./Login";
 export { Signup } from "./Signup";
+export { ReviewQuiz } from "./ReviewQuiz";

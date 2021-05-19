@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { QuizInstructionModal } from "../Components";
 import { Quiz } from "../Data/quizData.types";
 
@@ -16,6 +16,10 @@ export const Categories = () => {
     quizDispatch({ type: "LOAD_QUIZ", payload: quiz });
     return setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="flex flex-col items-center min-h-screen bg-purple-800">
       {isModalOpen && <QuizInstructionModal setIsModalOpen={setIsModalOpen} />}

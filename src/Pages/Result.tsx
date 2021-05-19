@@ -6,7 +6,7 @@ import URL from "../Components/ServerURL";
 import { useQuiz, useStore, useUser } from "../Store";
 
 export const Result = () => {
-  const { quizState, quizDispatch } = useQuiz();
+  const { quizState } = useQuiz();
   const { totalQuestions, score, correctAnswers } = quizState;
 
   const navigation = useNavigate();
@@ -23,7 +23,7 @@ export const Result = () => {
     return accuracy;
   };
 
-  const resetBtn = async () => {
+  const updateScore = async () => {
     const quizDone = {
       _id: quizState._id,
       score: score,
@@ -56,8 +56,7 @@ export const Result = () => {
           })
         );
         userDispatch({ type: "QUIZ_COMPLETE", payload: quizDone });
-        quizDispatch({ type: "RESET" });
-        navigation("/categories");
+        navigation("/review-quiz");
       }
     } catch (error) {
       console.log(error);
@@ -101,15 +100,9 @@ export const Result = () => {
         <div className="flex flex-row justify-evenly w-full my-5">
           <button
             className="border-2 border-pink-700 px-2 py-1 rounded-md"
-            onClick={resetBtn}
+            onClick={updateScore}
           >
-            Main Menu
-          </button>
-          <button
-            className="border-2 border-pink-700 px-2 py-1 rounded-md"
-            onClick={resetBtn}
-          >
-            Play More
+            Review Quiz
           </button>
         </div>
       </div>

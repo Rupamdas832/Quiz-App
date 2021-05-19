@@ -46,6 +46,7 @@ export type QuizState = {
   correctAnswers: number;
   accuracy: number;
   highestScore: number;
+  questionsAttempted: QuestionAttempt[];
 };
 export type StoreState = {
   quizzes: Quiz[];
@@ -57,6 +58,12 @@ export type QuizPlayed = {
   score: number;
 };
 
+export type QuestionAttempt = {
+  _id: string;
+  index: number;
+  isCorrect: boolean;
+};
+
 export type Action =
   | { type: "LOAD_QUIZ"; payload: Quiz }
   | { type: "INCREASE_SCORE"; payload: number }
@@ -65,6 +72,7 @@ export type Action =
   | { type: "NEXT_QUESTION" }
   | { type: "PREVIOUS_QUESTION" }
   | { type: "CORRECT_ANSWER" }
+  | { type: "QUESTION_ATTEMPT"; payload: QuestionAttempt }
   | { type: "ACCURACY"; payload: number };
 
 export type StoreAction =

@@ -47,8 +47,18 @@ export const QuestionCard = () => {
       );
   };
 
-  const checkAnswer = (currentQuestion: Question, option: Option) => {
+  const checkAnswer = (
+    currentQuestion: Question,
+    option: Option,
+    idx: number
+  ) => {
     setIsAnswered(true);
+    const questionAttempt = {
+      _id: currentQuestion._id,
+      index: idx,
+      isCorrect: option.isCorrect,
+    };
+    quizDispatch({ type: "QUESTION_ATTEMPT", payload: questionAttempt });
     if (option.isCorrect) {
       quizDispatch({ type: "CORRECT_ANSWER" });
       return quizDispatch({
@@ -157,9 +167,9 @@ export const QuestionCard = () => {
                 showOption(option)
               ) : (
                 <button
-                  onClick={() => checkAnswer(currentQuestion, option)}
+                  onClick={() => checkAnswer(currentQuestion, option, idx)}
                   disabled={isAnswered}
-                  className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-white text-md rounded-xl hover:bg-blue-700 hover:text-white shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"
+                  className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-white text-md rounded-xl hover:text-pink-700 shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"
                 >
                   {option.value}
                 </button>

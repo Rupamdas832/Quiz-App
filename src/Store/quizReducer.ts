@@ -50,6 +50,11 @@ const QuizReducer = (state: QuizState, action: Action) => {
       };
     case "CORRECT_ANSWER":
       return { ...state, correctAnswers: state.correctAnswers + 1 };
+    case "QUESTION_ATTEMPT":
+      return {
+        ...state,
+        questionsAttempted: state.questionsAttempted.concat(action.payload),
+      };
     case "ACCURACY":
       return { ...state, accuracy: action.payload };
     default:
