@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "../Components";
 import URL from "../Components/ServerURL";
@@ -65,8 +66,12 @@ export const Result = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-blue-400 p-5 relative">
+    <div className="flex flex-col min-h-screen items-center justify-center bg-purple-800 p-5 relative">
       {loadingMessage === "updating" ? <Toast title="Updating Score" /> : null}
       <div className="flex flex-col bg-white p-5 text-center items-center rounded-xl">
         <div className="h-40 w-40">
@@ -95,13 +100,13 @@ export const Result = () => {
         </p>
         <div className="flex flex-row justify-evenly w-full my-5">
           <button
-            className="border-2 border-blue-700 px-2 py-1 rounded-md"
+            className="border-2 border-pink-700 px-2 py-1 rounded-md"
             onClick={resetBtn}
           >
             Main Menu
           </button>
           <button
-            className="border-2 border-blue-700 px-2 py-1 rounded-md"
+            className="border-2 border-pink-700 px-2 py-1 rounded-md"
             onClick={resetBtn}
           >
             Play More

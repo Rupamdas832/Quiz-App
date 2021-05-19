@@ -30,7 +30,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container bg-blue-400 h-screen">
+    <div className="container bg-purple-800 h-screen">
       <Router>
         <Header />
         {loadingMessage === "loading" ? (

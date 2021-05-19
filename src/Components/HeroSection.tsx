@@ -11,7 +11,7 @@ export const HeroSection = () => {
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <PrivateRoute path="/quiz" element={<QuestionCard />} />
-        <PrivateRoute path="/leader-board" element={<LeaderBoard />} />
+        <Route path="/leader-board" element={<LeaderBoard />} />
         <PrivateRoute path="/result" element={<Result />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

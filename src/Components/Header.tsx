@@ -4,7 +4,7 @@ import { useQuiz, useUser } from "../Store";
 
 export const Header = () => {
   const { userState, userDispatch } = useUser();
-  const { totalScore, isLoggedIn } = userState;
+  const { totalScore, isLoggedIn, name } = userState;
 
   const { quizDispatch } = useQuiz();
 
@@ -14,7 +14,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-around h-10 items-center bg-blue-700">
+    <div className="flex flex-row justify-around h-10 items-center bg-pink-500">
       <Link to="/">
         <p
           className="text-white font-bold"
@@ -23,9 +23,11 @@ export const Header = () => {
           Quizzy
         </p>
       </Link>
+      {isLoggedIn && <p className="text-white text-sm font-medium">{name}</p>}
       {isLoggedIn && (
-        <p className="text-white text-lg font-medium">Score: {totalScore}</p>
+        <p className="text-white text-sm font-medium">Score: {totalScore}</p>
       )}
+
       {!isLoggedIn && (
         <Link to="/login">
           <button className="text-white border-2 border-white px-1 rounded">
@@ -36,7 +38,7 @@ export const Header = () => {
       {isLoggedIn && (
         <Link to="/">
           <button
-            className="text-white border-2 border-white px-1 rounded"
+            className="text-white border border-white px-1 rounded"
             onClick={logoutUser}
           >
             Logout

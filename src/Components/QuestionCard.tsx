@@ -113,36 +113,37 @@ export const QuestionCard = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     startTimer();
   });
 
   const currentQuestion = questions[questionNumber - 1];
 
   return (
-    <div className="flex flex-col items-center relative min-h-screen bg-blue-400">
+    <div className="flex flex-col items-center relative min-h-screen bg-purple-800">
       {loadingMessage === "highScore" ? (
         <Toast title="Updating High Score" />
       ) : null}
-      <h1 className="text-center text-blue-700 text-2xl uppercase my-3">
+      <h1 className="text-center text-white font-semibold text-2xl uppercase my-3">
         {title}
       </h1>
       <div className="flex flex-row justify-between items-center w-5/6 my-5 md:w-1/2">
         <div>
-          <h1 className="text-3xl">
+          <h1 className="text-2xl text-center">
             {questionNumber} / <span>{totalQuestions}</span>
           </h1>
-          <p className="text-blue-700">Questions</p>
+          <p className="text-pink-500">Questions</p>
         </div>
         <div>
-          <h1 className="text-3xl text-white">{timeCounter}</h1>
+          <h1 className="text-2xl text-center text-white">{timeCounter}</h1>
         </div>
         <div>
-          <h1 className="text-3xl">{score}</h1>
-          <p className="text-blue-700">Points</p>
+          <h1 className="text-2xl text-center">{score}</h1>
+          <p className="text-pink-500">Points</p>
         </div>
       </div>
 
-      <p className="flex flex-row items-center justify-center px-5 py-3 text-left text-xl rounded-xl md:text-3xl">
+      <p className="flex flex-row items-center justify-center px-5 py-3 text-white text-left text-xl rounded-xl md:text-3xl">
         {currentQuestion.question}
       </p>
       <div className="flex flex-col w-5/6 md:w-full md:items-center md:w-1/2">
@@ -171,7 +172,7 @@ export const QuestionCard = () => {
         <Link to="/">
           <button
             onClick={() => quitBtn()}
-            className="bg-blue-700 text-white px-3 py-1 rounded-md"
+            className="bg-pink-500 px-3 py-1 rounded-md"
           >
             Quit
           </button>
@@ -186,7 +187,7 @@ export const QuestionCard = () => {
         ) : (
           <button
             onClick={() => nextBtn()}
-            className="bg-blue-700 text-white px-2 py-1 rounded-md"
+            className="bg-pink-500 px-2 py-1 rounded-md"
           >
             Next
           </button>
