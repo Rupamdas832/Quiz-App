@@ -76,7 +76,7 @@ export const Signup = () => {
             <input
               placeholder="Enter Name"
               type="text"
-              className="ml-3 w-full border-b-2 border-blue-700"
+              className="ml-3 w-full border-b-2 border-purple-600"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -87,7 +87,7 @@ export const Signup = () => {
             <input
               placeholder="Enter Email"
               type="email"
-              className="ml-3 w-full border-b-2 border-blue-700"
+              className="ml-3 w-full border-b-2 border-purple-600"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -98,7 +98,7 @@ export const Signup = () => {
             <input
               placeholder="Enter Password"
               type="password"
-              className="ml-3 w-full border-b-2 border-blue-700"
+              className="ml-3 w-full border-b-2 border-purple-600"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -108,7 +108,7 @@ export const Signup = () => {
             </p>
           )}
           <button
-            className="py-2 px-4 mt-5 text-white bg-blue-700 rounded-xl"
+            className="py-2 px-4 mt-5 text-white bg-pink-500 rounded-xl"
             type="submit"
             onClick={signUpUser}
           >
