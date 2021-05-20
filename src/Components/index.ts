@@ -3,5 +3,5 @@ export { QuestionCard } from "./QuestionCard";
 export { HeroSection } from "./HeroSection";
 export { PrivateRoute } from "./PrivateRoute";
 export { Toast } from "./Toast";
-export { QuizInstructionModal } from "./QuizInstructionModal";
+export { QuestionInstructionModal } from "./QuestionInstructionModal";
 export { ReviewCard } from "./ReviewCard";

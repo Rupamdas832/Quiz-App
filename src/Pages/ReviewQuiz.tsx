@@ -1,12 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReviewCard } from "../Components";
-import {
-  Option,
-  Question,
-  QuestionAttempt,
-  Quiz,
-} from "../Data/quizData.types";
+import { Question, QuestionAttempt } from "../Data/quizData.types";
 import { useQuiz } from "../Store";
 
 export const ReviewQuiz = () => {

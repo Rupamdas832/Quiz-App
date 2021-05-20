@@ -44,8 +44,8 @@ export const LeaderBoard = () => {
           let userScore = 0;
           quizCompleted.map((item: QuizPlayed) => {
             if (item._id === _id) {
-              userScore = item.score;
-            }
+              return (userScore = item.score);
+            } else return item;
           });
           return (
             <div

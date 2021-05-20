@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
 import { FcOk, FcCancel } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { Option, Question } from "../Data/quizData.types";

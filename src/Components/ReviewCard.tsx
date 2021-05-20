@@ -1,5 +1,5 @@
 import React from "react";
-import { Option, Question } from "../Data/quizData.types";
+import { Option } from "../Data/quizData.types";
 
 export const ReviewCard = ({ ...props }) => {
   return (

@@ -5,15 +5,10 @@ const QuizReducer = (state: QuizState, action: Action) => {
     case "LOAD_QUIZ":
       return {
         ...state,
-        score: 0,
-        status: "starting",
         title: action.payload.title,
         questions: action.payload.questions,
         _id: action.payload._id,
-        questionNumber: 1,
         totalQuestions: action.payload.questions.length,
-        correctAnswers: 0,
-        accuracy: 0,
         highestScore: action.payload.highestScore,
       };
     case "RESET":

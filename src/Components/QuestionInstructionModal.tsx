@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuiz } from "../Store";
 
-export const QuizInstructionModal = ({ setIsModalOpen }: any) => {
+export const QuestionInstructionModal = ({ setIsModalOpen }: any) => {
   const { quizState, quizDispatch } = useQuiz();
   const { totalQuestions, questions } = quizState;
 
@@ -15,7 +15,7 @@ export const QuizInstructionModal = ({ setIsModalOpen }: any) => {
   };
 
   return (
-    <div className="absolute flex flex-col items-center justify-center h-screen w-screen bg-black bg-opacity-50">
+    <div className="absolute flex flex-col items-center justify-center h-screen w-screen bg-black bg-opacity-50 z-20">
       <div className="flex flex-col px-5 py-5 bg-white rounded-xl w-5/6 md:w-1/2 md:text-xl">
         <h1 className="text-2xl font-semibold">Instructions</h1>
         <div className="mt-3 w-full border-t-2 border-pink-600">
