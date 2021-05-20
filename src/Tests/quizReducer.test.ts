@@ -264,4 +264,41 @@ describe("testing quiz", () => {
 
     expect(state).toEqual(finalState);
   });
+  it("should increase question number without exceeding total no of questions", () => {
+    const initialState = {
+      _id: "",
+      score: 0,
+      status: "starting",
+      title: "",
+      questions: [],
+      quizNo: 0,
+      questionNumber: 6,
+      totalQuestions: 6,
+      correctAnswers: 0,
+      accuracy: 0,
+      highestScore: 0,
+      questionsAttempted: [],
+    };
+    const finalState = {
+      _id: "",
+      score: 0,
+      status: "starting",
+      title: "",
+      questions: [],
+      quizNo: 0,
+      questionNumber: 6,
+      totalQuestions: 6,
+      correctAnswers: 0,
+      accuracy: 0,
+      highestScore: 0,
+      questionsAttempted: [],
+    };
+    let action = {
+      type: "NEXT_QUESTION",
+    };
+
+    let state = QuizReducer(initialState, <Action>action);
+
+    expect(state).toEqual(finalState);
+  });
 });
