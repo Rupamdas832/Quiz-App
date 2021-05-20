@@ -10,6 +10,7 @@ import { Toast } from "./Toast";
 export const QuestionCard = () => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [timeCounter, setTimeCounter] = useState(20);
+  const [isSkipped, setIsSkipped] = useState(false);
 
   const navigate = useNavigate();
 
@@ -72,9 +73,16 @@ export const QuestionCard = () => {
     }
   };
   const nextBtn = () => {
-    quizDispatch({ type: "NEXT_QUESTION" });
-    setIsAnswered(false);
-    setTimeCounter(20);
+    if (isAnswered) {
+      quizDispatch({ type: "NEXT_QUESTION" });
+      setIsAnswered(false);
+      setTimeCounter(20);
+    } else {
+      setIsSkipped(true);
+      quizDispatch({ type: "NEXT_QUESTION" });
+      setIsAnswered(false);
+      setTimeCounter(20);
+    }
   };
 
   const quitBtn = () => {
@@ -118,13 +126,17 @@ export const QuestionCard = () => {
     if (timeCounter < 1 || isAnswered) {
       clearTimeout(interval);
       setIsAnswered(true);
+    } else if (isSkipped) {
+      clearTimeout(interval);
+      setIsSkipped(false);
+      setTimeCounter(20);
     }
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     startTimer();
-  });
+  }, [timeCounter]);
 
   const currentQuestion = questions[questionNumber - 1];
 
