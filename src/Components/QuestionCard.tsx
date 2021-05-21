@@ -164,7 +164,7 @@ export const QuestionCard = () => {
         </div>
       </div>
 
-      <p className="flex flex-row items-center justify-center px-5 py-3 text-white text-left text-xl rounded-xl md:text-3xl">
+      <p className="flex flex-row items-center justify-center px-5 py-3 text-white text-left text-xl rounded-xl md:text-3xl md:w-1/2">
         {currentQuestion.question}
       </p>
       <div className="flex flex-col w-5/6 md:w-full md:items-center md:w-1/2">
