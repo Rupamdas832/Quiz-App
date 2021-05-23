@@ -16,7 +16,6 @@ const QuizReducer = (state: QuizState, action: Action) => {
         ...state,
         _id: "",
         score: 0,
-        status: "starting",
         title: "",
         questions: [],
         quizNo: 0,

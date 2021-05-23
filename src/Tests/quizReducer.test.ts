@@ -6,7 +6,6 @@ describe("testing quiz", () => {
     const initialState = {
       _id: "",
       score: 0,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -20,7 +19,6 @@ describe("testing quiz", () => {
     const finalState = {
       _id: "",
       score: 75,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -31,12 +29,12 @@ describe("testing quiz", () => {
       highestScore: 0,
       questionsAttempted: [],
     };
-    let action = {
+    const action = {
       type: "INCREASE_SCORE",
       payload: 75,
     };
 
-    let state = QuizReducer(initialState, <Action>action);
+    const state = QuizReducer(initialState, <Action>action);
 
     expect(state).toEqual(finalState);
   });
@@ -45,7 +43,6 @@ describe("testing quiz", () => {
     const initialState = {
       _id: "",
       score: 50,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -59,7 +56,6 @@ describe("testing quiz", () => {
     const finalState = {
       _id: "",
       score: 45,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -70,12 +66,12 @@ describe("testing quiz", () => {
       highestScore: 0,
       questionsAttempted: [],
     };
-    let action = {
+    const action = {
       type: "DECREASE_SCORE",
       payload: 5,
     };
 
-    let state = QuizReducer(initialState, <Action>action);
+    const state = QuizReducer(initialState, <Action>action);
 
     expect(state).toEqual(finalState);
   });
@@ -84,7 +80,6 @@ describe("testing quiz", () => {
     const initialState = {
       _id: "",
       score: 0,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -98,7 +93,6 @@ describe("testing quiz", () => {
     const finalState = {
       _id: "abc",
       score: 0,
-      status: "starting",
       title: "Unreal Engine",
       questions: [
         {
@@ -180,7 +174,7 @@ describe("testing quiz", () => {
       questionsAttempted: [],
     };
 
-    let action = {
+    const action = {
       type: "LOAD_QUIZ",
       payload: {
         _id: "abc",
@@ -260,7 +254,7 @@ describe("testing quiz", () => {
       },
     };
 
-    let state = QuizReducer(initialState, <Action>action);
+    const state = QuizReducer(initialState, <Action>action);
 
     expect(state).toEqual(finalState);
   });
@@ -268,7 +262,6 @@ describe("testing quiz", () => {
     const initialState = {
       _id: "",
       score: 0,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -282,7 +275,6 @@ describe("testing quiz", () => {
     const finalState = {
       _id: "",
       score: 0,
-      status: "starting",
       title: "",
       questions: [],
       quizNo: 0,
@@ -293,11 +285,11 @@ describe("testing quiz", () => {
       highestScore: 0,
       questionsAttempted: [],
     };
-    let action = {
+    const action = {
       type: "NEXT_QUESTION",
     };
 
-    let state = QuizReducer(initialState, <Action>action);
+    const state = QuizReducer(initialState, <Action>action);
 
     expect(state).toEqual(finalState);
   });

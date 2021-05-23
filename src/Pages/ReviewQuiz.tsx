@@ -53,14 +53,24 @@ export const ReviewQuiz = () => {
           );
         }
       })}
-      <Link to="/categories">
-        <button
-          className="border bg-pink-700 text-white px-2 py-1 mt-5 rounded-md"
-          onClick={() => quizDispatch({ type: "RESET" })}
-        >
-          Play More
-        </button>
-      </Link>
+      <div className="flex flex-row w-4/6 justify-between items-center">
+        <Link to="/">
+          <button
+            className="border border-white text-white px-2 py-1 mt-5 rounded-md"
+            onClick={() => quizDispatch({ type: "RESET" })}
+          >
+            Main Menu
+          </button>
+        </Link>
+        <Link to="/categories">
+          <button
+            className="border bg-pink-700 text-white px-2 py-1 mt-5 rounded-md"
+            onClick={() => quizDispatch({ type: "RESET" })}
+          >
+            Play More
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

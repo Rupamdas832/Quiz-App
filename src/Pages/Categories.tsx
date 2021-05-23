@@ -77,10 +77,10 @@ export const Categories = () => {
             return (
               <div
                 key={_id}
-                className="w-40 h-40 mt-3 md:w-80 md:h-64 border-2 border-yellow-500 text-white rounded-lg shadow-lg relative"
+                className="w-40 h-40 mt-3 md:w-80 md:h-64 border-yellow-500 text-white rounded-lg shadow-lg relative"
               >
                 {quizAlreadyPlayed && (
-                  <div className="absolute flex flex-col text-lg md:text-3xl text-pink-700 font-bold items-center justify-center w-full h-full bg-gray-200 opacity-50">
+                  <div className="absolute flex flex-col text-lg md:text-3xl text-pink-700 font-bold items-center justify-center w-full h-full bg-gray-200 opacity-50 rounded-lg">
                     Already Played
                   </div>
                 )}

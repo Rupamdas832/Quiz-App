@@ -23,12 +23,14 @@ export const Login = () => {
   const loginWithCredentials = async () => {
     storeDispatch({ type: "IS_LOADING", payload: "loggingIn" });
     try {
-      const response = await axios.post(`${URL}/login`, {
+      const {
+        data: { user },
+        status,
+      } = await axios.post(`${URL}/login`, {
         email: email,
         password: password,
       });
-      const user = response.data.user;
-      if (response.status === 200) {
+      if (status === 200) {
         userDispatch({ type: "USER_LOAD", payload: user });
         localStorage.setItem(
           "QuizLoginUser",

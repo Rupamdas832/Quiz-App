@@ -29,20 +29,20 @@ export const Home = () => {
       <div className="flex flex-col justify-center px-16 py-4 rounded-xl">
         <div className="flex flex-col">
           <Link to="/categories">
-            <button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-gradient-to-r from-yellow-400 to-pink-500 text-2xl md:text-3xl rounded-xl hover:bg-blue-600 hover:text-white">
+            <button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-gradient-to-r from-green-500 to-pink-600 text-2xl md:text-3xl rounded-xl hover:bg-blue-600 hover:text-white">
               <AiFillPlayCircle />
               <span className="ml-3">Categories</span>
             </button>
           </Link>
           <Link to="/leader-board">
-            <button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-gradient-to-r from-yellow-400 to-pink-500 text-2xl md:text-3xl rounded-xl hover:bg-blue-600 hover:text-white">
+            <button className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-gradient-to-r from-green-500 to-pink-600 text-2xl md:text-3xl rounded-xl hover:bg-blue-600 hover:text-white">
               <IoIosListBox />
               <span className="ml-3">LeaderBoard</span>
             </button>
           </Link>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-gradient-to-r from-yellow-400 to-pink-500 text-2xl md:text-3xl rounded-xl hover:bg-blue-600 hover:text-white"
+            className="flex flex-row items-center w-full mt-5 px-5 py-2 text-left bg-gradient-to-r from-green-500 to-pink-600 text-2xl md:text-3xl rounded-xl hover:bg-blue-600 hover:text-white"
           >
             <IoSettingsSharp />
             <span className="ml-3">Instructions</span>

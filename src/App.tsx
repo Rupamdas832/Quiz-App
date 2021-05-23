@@ -13,9 +13,11 @@ const App = () => {
   const fetchQuizzes = async () => {
     storeDispatch({ type: "IS_LOADING", payload: "loading" });
     try {
-      const response = await axios(`${URL}/quiz`);
-      const quizzes = response.data.quizzes;
-      if ((response.status = 200)) {
+      const {
+        data: { quizzes },
+        status,
+      } = await axios(`${URL}/quiz`);
+      if (status === 200) {
         storeDispatch({ type: "LOAD_QUIZZES", payload: quizzes });
       }
     } catch (error) {

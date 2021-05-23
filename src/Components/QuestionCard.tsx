@@ -1,16 +1,44 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { FcOk, FcCancel } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { Option, Question } from "../Data/quizData.types";
 import { useQuiz, useStore, useUser } from "../Store";
+import { QuitModal } from "./QuitModal";
 import URL from "./ServerURL";
 import { Toast } from "./Toast";
 
 export const QuestionCard = () => {
-  const [isAnswered, setIsAnswered] = useState(false);
-  const [timeCounter, setTimeCounter] = useState(20);
-  const [isSkipped, setIsSkipped] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  type QuestionAction =
+    | { type: "IS_ANSWERED"; payload: boolean }
+    | { type: "RESET_TIME" }
+    | { type: "IS_SKIPPED"; payload: boolean }
+    | { type: "DECREASE_TIME" };
+
+  const initialState = {
+    isAnswered: false,
+    timeCounter: 20,
+    isSkipped: false,
+  };
+
+  const reducer = (state: typeof initialState, action: QuestionAction) => {
+    switch (action.type) {
+      case "IS_ANSWERED":
+        return { ...state, isAnswered: action.payload };
+      case "IS_SKIPPED":
+        return { ...state, isSkipped: action.payload };
+      case "RESET_TIME":
+        return { ...state, timeCounter: 20 };
+      case "DECREASE_TIME":
+        return { ...state, timeCounter: state.timeCounter - 1 };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const navigate = useNavigate();
 
@@ -52,7 +80,7 @@ export const QuestionCard = () => {
     option: Option,
     idx: number
   ) => {
-    setIsAnswered(true);
+    dispatch({ type: "IS_ANSWERED", payload: true });
     const questionAttempt = {
       _id: currentQuestion._id,
       index: idx,
@@ -73,20 +101,16 @@ export const QuestionCard = () => {
     }
   };
   const nextBtn = () => {
-    if (isAnswered) {
+    if (state.isAnswered) {
       quizDispatch({ type: "NEXT_QUESTION" });
-      setIsAnswered(false);
-      setTimeCounter(20);
+      dispatch({ type: "IS_ANSWERED", payload: false });
+      dispatch({ type: "RESET_TIME" });
     } else {
-      setIsSkipped(true);
+      dispatch({ type: "IS_SKIPPED", payload: true });
       quizDispatch({ type: "NEXT_QUESTION" });
-      setIsAnswered(false);
-      setTimeCounter(20);
+      dispatch({ type: "IS_ANSWERED", payload: false });
+      dispatch({ type: "RESET_TIME" });
     }
-  };
-
-  const quitBtn = () => {
-    quizDispatch({ type: "RESET" });
   };
 
   const submitBtn = async () => {
@@ -121,22 +145,22 @@ export const QuestionCard = () => {
 
   const startTimer = () => {
     const interval = setTimeout(() => {
-      setTimeCounter((timeCounter) => timeCounter - 1);
+      dispatch({ type: "DECREASE_TIME" });
     }, 1000);
-    if (timeCounter < 1 || isAnswered) {
+    if (state.timeCounter < 1 || state.isAnswered) {
       clearTimeout(interval);
-      setIsAnswered(true);
-    } else if (isSkipped) {
+      dispatch({ type: "IS_ANSWERED", payload: true });
+    } else if (state.isSkipped) {
       clearTimeout(interval);
-      setIsSkipped(false);
-      setTimeCounter(20);
+      dispatch({ type: "IS_SKIPPED", payload: false });
+      dispatch({ type: "RESET_TIME" });
     }
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     startTimer();
-  }, [timeCounter]);
+  }, [state.timeCounter]);
 
   const currentQuestion = questions[questionNumber - 1];
 
@@ -145,6 +169,7 @@ export const QuestionCard = () => {
       {loadingMessage === "highScore" ? (
         <Toast title="Updating High Score" />
       ) : null}
+      {isModalOpen && <QuitModal setIsModalOpen={setIsModalOpen} />}
       <h1 className="text-center text-white font-semibold text-2xl uppercase my-3">
         {title}
       </h1>
@@ -156,7 +181,9 @@ export const QuestionCard = () => {
           <p className="text-pink-500">Questions</p>
         </div>
         <div>
-          <h1 className="text-2xl text-center text-white">{timeCounter}</h1>
+          <h1 className="text-2xl text-center text-white">
+            {state.timeCounter}
+          </h1>
         </div>
         <div>
           <h1 className="text-2xl text-center">{score}</h1>
@@ -174,12 +201,12 @@ export const QuestionCard = () => {
               key={idx}
               className="flex flex-col w-full md:w-full md:items-center"
             >
-              {isAnswered ? (
+              {state.isAnswered ? (
                 showOption(option)
               ) : (
                 <button
                   onClick={() => checkAnswer(currentQuestion, option, idx)}
-                  disabled={isAnswered}
+                  disabled={state.isAnswered}
                   className="flex flex-row items-center mt-3 px-5 py-2 text-left bg-white text-md rounded-xl hover:text-pink-700 shadow-lg md:w-1/3 md:text-xl md:my-3 md:p-3"
                 >
                   {option.value}
@@ -190,14 +217,12 @@ export const QuestionCard = () => {
         })}
       </div>
       <div className="flex flex-row justify-between w-5/6 mt-5 md:w-1/2">
-        <Link to="/">
-          <button
-            onClick={() => quitBtn()}
-            className="bg-pink-500 px-3 py-1 rounded-md"
-          >
-            Quit
-          </button>
-        </Link>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-pink-500 px-3 py-1 rounded-md"
+        >
+          Quit
+        </button>
         {questionNumber === totalQuestions ? (
           <button
             onClick={() => submitBtn()}

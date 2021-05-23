@@ -4,7 +4,6 @@ import QuizReducer from "./quizReducer";
 export const initialState: any = {
   _id: "",
   score: 0,
-  status: "starting",
   title: "",
   questions: [],
   quizNo: 0,

@@ -36,7 +36,6 @@ export type User = {
 
 export type QuizState = {
   score: number;
-  status: string;
   title: string;
   questions: Question[];
   _id: string;
