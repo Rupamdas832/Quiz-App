@@ -11,7 +11,7 @@ export const LeaderBoard = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-purple-800 items-center p-5">
-      <div className="flex flex-col items-center w-full md:w-1/2 bg-gradient-to-r from-green-500 to-pink-600 text-white p-5 rounded-b-3xl shadow-xl">
+      <div className="flex flex-col items-center w-full md:w-1/2 bg-gradient-to-r from-yellow-300 to-pink-500 text-white p-5 rounded-b-3xl shadow-xl">
         <h1 className="text-3xl font-bold uppercase tracking-wider shadow-md">
           LeaderBoard
         </h1>
